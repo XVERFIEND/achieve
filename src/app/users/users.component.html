@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col1">
+    <h2>Players</h2>
+    <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis debitis corporis voluptates culpa, nisi iusto tenetur vel illum optio sapiente harum facilis sint vero eum enim architecto? Impedit, commodi amet.
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col1">
+
+    <ul class="list-group">
+
+      <li class="list-group-item" *ngFor="let user of users">
+        <h3 class="float-start">{{user.name}}</h3>
+        <span class="float-end points-total">Points: {{user.total}}</span>
+      </li>
+
+    </ul>
+
+  </div>
+</div>

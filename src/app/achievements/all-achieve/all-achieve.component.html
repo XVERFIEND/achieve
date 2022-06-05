@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col">
+    <h2>All achieves</h2>
+    <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat veritatis ab voluptatum consectetur ut ipsam, qui ipsa nisi officia tenetur aut sint? Quibusdam unde, quo voluptatum porro aliquid suscipit. Necessitatibus?
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <h2>Available to achieve:</h2>
+    <ul class="list-group">
+      <li class="list-group-item d-flex align-items-center" *ngFor="let achieve of newAchieves">
+        <div>
+          <h3 class="">{{achieve.name}} - ID: {{achieve.id}}</h3>
+          <p>
+            {{achieve.desc}}
+          </p>
+          <p>
+            {{achieve.diff}}
+          </p>
+          <h3>{{achieve.points}}</h3>
+          <button class="btn btn-primary" (click)="getAchieve(achieve.id)">Click to achieve</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col">
+    <h2>Currently achieved:</h2>
+    <ul class="list-group">
+      <li class="list-group-item d-flex align-items-center" *ngFor="let achieve of myAchieves">
+        <div>
+          <h3 class="">{{achieve.name}} - ID: {{achieve.id}}</h3>
+          <p>
+            {{achieve.desc}}
+          </p>
+          <p>
+            {{achieve.diff}}
+          </p>
+          <h3>{{achieve.points}}</h3>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
