@@ -53,6 +53,7 @@ export class LoginComponent implements OnInit {
   getUsers() {
     this.userService.getUsers().subscribe((data) => {
       this.users = Object.values(data);
+      console.log(this.users);
     })
   }
 }

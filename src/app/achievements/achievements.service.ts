@@ -8,7 +8,7 @@ import { Achievement } from './achievement.model';
 })
 
 export class AchievementsService {
-  private REST_API: string = 'http://localhost:8080/api/achieves';
+  private REST_API: string = 'https://us-central1-stag-server.cloudfunctions.net/app/api/achieves';
   private httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private httpClient: HttpClient) { }
@@ -38,12 +38,12 @@ export class AchievementsService {
       )
   }
 
-  // // Update achieve
-  // updateAchieve(id:any, data:any): Observable<any> {
-  //   let API_URL = `${this.REST_API}/update-achieve/${id}`;
-  //   return this.httpClient.put(API_URL, data, {headers: this.httpHeaders})
-  //   .pipe(catchError(this.handleError))
-  // }
+  // Update achieve
+  updateAchieve(id:any, data:any): Observable<any> {
+    let API_URL = `${this.REST_API}/update-achieve/${id}`;
+    return this.httpClient.put(API_URL, data, {headers: this.httpHeaders})
+    .pipe(catchError(this.handleError))
+  }
 
   // // Delete
   // deleteAchieve(id:any): Observable<any> {

@@ -6,6 +6,7 @@ import { User } from '../users/user.model';
 import { Achievement } from './achievement.model';
 import { AchievementsService } from './achievements.service';
 import { UsersService } from '../users/users.service';
+import { ChangeDiffPipe } from '../shared/diff.pipe';
 
 @Component({
 
@@ -36,33 +37,44 @@ export class AchievementsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCurrentUser();
-    this.getAchieves();
   }
 
   getCurrentUser() {
     this.currentUserID = localStorage.getItem('userID');
 
-    this.userService.getUsers().subscribe((data) => {
-      this.users = Object.values(data);
-      this.user.push(this.users[this.currentUserID]);
-      this.userName = this.user[0].name;
-      this.userRef = this.user[0].ref;
-      console.log(this.user);
+    this.user = [];
+
+    this.userService.getUser(this.currentUserID).subscribe((data) => {
+      this.user.push(data);
+      this.userName = data.name;
+      this.userRef = data.ref;
+      this.totalScore = data.total;
+      console.log(data);
+      this.getAchieves();
     })
   }
 
   getAchieves() {
+    this.myAchieves = [];
+
     this.achieveService.getAchieves().subscribe((data) => {
       this.achieves = Object.values(data);
       this.user[0].achieves.forEach((e,i) => {
-        if(e == 1) {
-          this.myAchieves.push(this.achieves[i]);
-          this.totalScore += this.achieves[i].points;
-        } else {
-          this.allAchieves.push(this.achieves[i]);
-        }
+        this.myAchieves.push(this.achieves[e]);
       });
-      this.user[0].total = this.totalScore;
+    })
+  }
+
+  unachieve(aid: number, points: number) {
+    console.log(aid);
+    this.user[0].achieves.forEach((e,i) => {
+      if(e == aid) {
+        this.user[0].achieves.splice(i, 1);
+      }
+    });
+    this.user[0].total -= points;
+    console.log(this.user[0]);
+    this.userService.updateUser(this.currentUserID, this.user[0]).subscribe((data) => {
       this.getCurrentUser();
     })
   }

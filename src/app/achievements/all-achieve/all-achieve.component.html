@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col">
     <h2>All achieves</h2>
+    <h3>{{totalScore}}</h3>
     <p>
       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat veritatis ab voluptatum consectetur ut ipsam, qui ipsa nisi officia tenetur aut sint? Quibusdam unde, quo voluptatum porro aliquid suscipit. Necessitatibus?
     </p>
@@ -10,18 +11,16 @@
 <div class="row">
   <div class="col">
     <h2>Available to achieve:</h2>
-    <ul class="list-group">
-      <li class="list-group-item d-flex align-items-center" *ngFor="let achieve of newAchieves">
-        <div>
-          <h3 class="">{{achieve.name}} - ID: {{achieve.id}}</h3>
+    <ul class="achieve-group list-group">
+      <li class="list-group-item d-flex align-items-center" *ngFor="let achieve of achieves; let i = index;">
+        <div *ngIf="achieve.points != 0">
+          <h3 class="" *ngIf="achieve.diff != 10">{{achieve.name}}</h3>
+          <h3 class="" *ngIf="achieve.diff == 10">???</h3>
           <p>
             {{achieve.desc}}
           </p>
-          <p>
-            {{achieve.diff}}
-          </p>
-          <h3>{{achieve.points}}</h3>
-          <button class="btn btn-primary" (click)="getAchieve(achieve.id)">Click to achieve</button>
+          <h3 *ngIf="achieve.points != 0">{{achieve.diff | changediff}} - {{achieve.points}} points</h3>
+          <button class="btn btn-primary" (click)="getAchieve(achieve.aid, achieve.points)" *ngIf="achieve.diff != 10">Click to achieve</button>
         </div>
       </li>
     </ul>
@@ -30,20 +29,17 @@
 
 <hr>
 
-<div class="row">
+<div class="row" *ngIf="myAchieves.length > 0">
   <div class="col">
     <h2>Currently achieved:</h2>
-    <ul class="list-group">
+    <ul class="achieve-group list-group">
       <li class="list-group-item d-flex align-items-center" *ngFor="let achieve of myAchieves">
         <div>
-          <h3 class="">{{achieve.name}} - ID: {{achieve.id}}</h3>
+          <h3 class="">{{achieve.name}}</h3>
           <p>
             {{achieve.desc}}
           </p>
-          <p>
-            {{achieve.diff}}
-          </p>
-          <h3>{{achieve.points}}</h3>
+          <h3>{{achieve.diff | changediff}} - {{achieve.points}} points</h3>
         </div>
       </li>
     </ul>

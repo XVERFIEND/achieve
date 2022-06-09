@@ -13,15 +13,13 @@
     <ul class="list-group">
       <li class="list-group-item d-flex align-items-center" *ngFor="let achieve of myAchieves">
         <div>
-          <h3 class="">{{achieve.name}} - ID: {{achieve.id}}</h3>
+          <h3 class="">{{achieve.name}} - {{achieve.aid}}</h3>
           <p>
             {{achieve.desc}}
           </p>
-          <p>
-            {{achieve.diff}}
-          </p>
-          <h3>{{achieve.points}}</h3>
+          <h3>{{achieve.diff | changediff}} - {{achieve.points}} points</h3>
         </div>
+        <button class="btn btn-danger" (click)="unachieve(achieve.aid, achieve.points)">UNACHIEVE</button>
       </li>
     </ul>
   </div>

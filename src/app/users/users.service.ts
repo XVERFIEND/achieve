@@ -8,7 +8,7 @@ import { User } from './user.model';
 })
 
 export class UsersService {
-  private REST_API: string = 'http://localhost:8080/api/users';
+  private REST_API: string = 'https://us-central1-stag-server.cloudfunctions.net/app/api/users';
   private httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private httpClient: HttpClient) { }

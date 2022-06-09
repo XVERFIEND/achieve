@@ -11,6 +11,7 @@ import { LoginComponent } from './users/login/login.component';
 import { AllAchieveComponent } from './achievements/all-achieve/all-achieve.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ChangeDiffPipe } from './shared/diff.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     UsersComponent,
     AdminComponent,
     LoginComponent,
-    AllAchieveComponent
+    AllAchieveComponent,
+    ChangeDiffPipe
   ],
   imports: [
     BrowserModule,
